@@ -18,7 +18,7 @@ def eating_cookies(n):
     cookies = n
     #check if n is less than 2 
     if n < 2:
-        #only 1 way to eat the cookies
+        #only 1 way to eat the cookie
         return 1
     #check if n is 2
     if n == 2:
@@ -26,7 +26,7 @@ def eating_cookies(n):
         return 2
     #check if n is 3
     if n == 3:
-        #there are 4 ways to eat the cookie
+        #there are 4 ways to eat the cookie (from prompt)
         return 4
     #if n is larger than 3
     else:
