@@ -1,3 +1,4 @@
+import math
 '''
 Input: an integer
 Returns: an integer
@@ -13,38 +14,24 @@ He can eat 3 cookies all at once.
 Thus, eating_cookies(3) should return an answer of 4.
 '''
 def eating_cookies(n):
-    #initialize number of ways to 1 for when eating only 1 cookie at a time
-    ways = 1
-    #check when eating 3 cookies at once
-    #check that there is at least 3 cookies
-    if n >= 3:
-        #get number of times can eat 3 cookies at once
-        threeC = n // 3
-        #add the number of times you can eat 3 cookies at once to ways
-        ways += threeC
-        
-        #check if n is not divisible by 3 (left over cookies)
-        if n % 3 != 0:
-            leftOver = n - (threeC * 3)
-            #check if leftOver is 2 
-            if leftOver == 2:
-                ways += 1
-            else:
-                ways += leftOver
-    #check when eating 2 cookies at once
-    #check that there is at least 2 cookies
-    elif n >= 2:
-        #get the number of times can eat 2 cookies at a time
-        twoC = n // 2
-        #add the number of times to ways
-        ways += twoC
-        #check if n is not divisible by 2 
-        if n % 2 != 0:
-            leftOver = n - (twoC * 2)
-            ways += leftOver
-    
-    #return the number of ways
-    return ways 
+    ways = 0
+    cookies = n
+    #check if n is less than 2 
+    if n < 2:
+        #only 1 way to eat the cookies
+        return 1
+    #check if n is 2
+    if n == 2:
+        #there are 2 ways to eat it , 1 1 or 2
+        return 2
+    #check if n is 3
+    if n == 3:
+        #there are 4 ways to eat the cookie
+        return 4
+    #if n is larger than 3
+    else:
+        #call the function recursively
+         return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
 
 
 if __name__ == "__main__":
