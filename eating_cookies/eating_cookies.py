@@ -13,26 +13,43 @@ He can eat 2 cookies, then 1 cookie
 He can eat 3 cookies all at once.
 Thus, eating_cookies(3) should return an answer of 4.
 '''
-def eating_cookies(n):
-    ways = 0
-    cookies = n
-    #check if n is less than 2 
-    if n < 2:
-        #only 1 way to eat the cookie
+def eating_cookies(n, cache={}):
+    if cache == {}:
+        cache = {i: 0 for i in range(n+1)}
+    #checks if negative cookies which would have no way of eating it
+    if n < 0:
+        return 0
+    #if 0 cookies only 1 way to eat it
+    elif n == 0:
         return 1
-    #check if n is 2
-    if n == 2:
-        #there are 2 ways to eat it , 1 1 or 2
-        return 2
-    #check if n is 3
-    if n == 3:
-        #there are 4 ways to eat the cookie (from prompt)
-        return 4
-    #if n is larger than 3
+    #check cache to see if answer is stored in there 
+    if cache and cache[n] > 0:
+        return cache[n]
     else:
-        #call the function recursively
-         return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+        #store answers in cache 
+        cache[n] = eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
+        return cache[n]
+            
+    
 
+#first pass solution
+# def eating_cookies(n, cache=[]):
+#     #check if n is less than 2 
+#     if n < 2:
+#         #only 1 way to eat the cookie
+#         return 1
+#     #check if n is 2
+#     if n == 2:
+#         #there are 2 ways to eat it , 1 1 or 2
+#         return 2
+#     #check if n is 3
+#     if n == 3:
+#         #there are 4 ways to eat the cookie (from prompt)
+#         return 4
+#     #if n is larger than 3
+#     else:
+#         #call the function recursively
+#          return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
 
 if __name__ == "__main__":
     # Use the main function here to test out your implementation
