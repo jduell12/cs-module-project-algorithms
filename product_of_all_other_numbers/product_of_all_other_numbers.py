@@ -1,11 +1,39 @@
 '''
 Input: a List of integers
 Returns: a List of integers
+
+Write a function that receives an array of integers and returns an array consisting of the product of all numbers in the array except the number at that index.
 '''
 def product_of_all_other_numbers(arr):
-    # Your code here
+    #initialize empty list
+    output = []
 
-    pass
+    #loop through array
+    for index in range(len(arr)):
+        #reset product
+        product = 1
+        
+        if index == 0:
+            #get right side - only have right side for this case
+            right = arr[index+1:]
+            for num in right:
+                product *= num
+            output.append(product)
+        else:
+            #get left side of arr
+            left = arr[:index]
+            #get right side of arr
+            right = arr[index+1:]
+            for num in left:
+                product *= num
+            for num in right:
+                product *= num
+            output.append(product)
+            
+    return output 
+        
+
+
 
 
 if __name__ == '__main__':
